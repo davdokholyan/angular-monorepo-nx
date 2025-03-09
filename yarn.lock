@@ -176,6 +176,13 @@
   dependencies:
     "@angular-eslint/bundled-angular-compiler" "19.2.1"
 
+"@angular/animations@^19.2.1":
+  version "19.2.1"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-19.2.1.tgz#d826cfc64b2841eecfe1f8b6d0d11c5e1ace7d1a"
+  integrity sha512-I67XYXBic9bM+yfce6Dqa950TsrEWB6uwSB2l6eIg3Byp48yJxQYbyjvjDbMXPieU2Bzo8FYVSD+lc8cF4+L6A==
+  dependencies:
+    tslib "^2.3.0"
+
 "@angular/build@19.2.1":
   version "19.2.1"
   resolved "https://registry.yarnpkg.com/@angular/build/-/build-19.2.1.tgz#25cdef3783addaceaa4dbbb174753fcab3f0da33"
@@ -209,6 +216,15 @@
     watchpack "2.4.2"
   optionalDependencies:
     lmdb "3.2.6"
+
+"@angular/cdk@^19.2.2":
+  version "19.2.2"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-19.2.2.tgz#862d7559eba7eb7e81ce27a05aebf9dd21a5c3ac"
+  integrity sha512-YLiydMiTSf7s/LKaLgNeWawspulqdo/47zcjs1sEkHOcmyN1yR2Q0zQdgSbtsvuNikaR4NMNgTybNTDnULl64A==
+  dependencies:
+    tslib "^2.3.0"
+  optionalDependencies:
+    parse5 "^7.1.2"
 
 "@angular/cli@~19.2.0":
   version "19.2.1"
@@ -8670,7 +8686,7 @@ parse5@4.0.0:
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-4.0.0.tgz#6d78656e3da8d78b4ec0b906f7c08ef1dfe3f608"
   integrity sha512-VrZ7eOd3T1Fk4XWNXMgiGBK/z0MG48BWG2uQNU4I72fkQuKUTZpl+u9k+CxEG0twMVzSmXEEz12z5Fnw1jIQFA==
 
-parse5@^7.0.0, parse5@^7.1.1:
+parse5@^7.0.0, parse5@^7.1.1, parse5@^7.1.2:
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-7.2.1.tgz#8928f55915e6125f430cc44309765bf17556a33a"
   integrity sha512-BuBYQYlv1ckiPdQi/ohiivi9Sagc9JG+Ozs0r7b/0iK3sKmrb0b9FdWdBbOdx6hBCM/F9Ir82ofnBhtZOjCRPQ==
