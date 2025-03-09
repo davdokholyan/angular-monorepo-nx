@@ -1,15 +1,15 @@
-# Build the Angular app
-FROM node:18-alpine AS build
+FROM node:18-alpine AS development
+
 WORKDIR /app
 
-# Install dependencies (using Yarn)
+RUN yarn global add nx@20.0.6
+
 COPY package.json yarn.lock ./
+
 RUN yarn install --frozen-lockfile
 
-# Copy source code and build the Angular app (production configuration)
 COPY . .
-RUN yarn nx build angular-monorepo --configuration=production
 
-# Serve the app with Apache
-FROM httpd:2.4-alpine AS final
-COPY --from=build /app/dist/angular-monorepo /usr/local/apache2/htdocs/
+EXPOSE 4200
+
+CMD ["sh", "-c", "yarn nx serve angular-monorepo --host 0.0.0.0 --port 4200"]
