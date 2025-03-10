@@ -12,6 +12,7 @@ export const appRoutes: Route[] = [
   {
     path: '',
     canActivate: [authGuard, accessGuard(true)],
+    loadComponent: () => import('./layout/layout.component').then(c => c.LayoutComponent),
     loadChildren: () => import('./layout/layout.routes').then(r => r.layoutRoutes),
   },
   { path: '**', redirectTo: '' },

@@ -9,7 +9,6 @@ import { RouteEnum, UserRegistrationStepEnum } from '@core/models/enums';
 import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { RegistrationManagementService } from '../../../../services';
 import { Step1FormData } from '@core/models/interfaces';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-step1',

@@ -1,9 +1,12 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { IUserData, Nullable } from '@core/models/interfaces';
+import { Router } from '@angular/router';
+import { RouteEnum } from '@core/models/enums';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly userKey = 'currentUser';
+  private readonly router = inject(Router);
 
   userData = signal<Nullable<IUserData>>(this.loadUserData());
 
@@ -17,6 +20,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.userKey);
     this.userData.set(null);
+    void this.router.navigate([`/${RouteEnum.AUTH}`]);
   }
 
   private loadUserData(): Nullable<IUserData> {
