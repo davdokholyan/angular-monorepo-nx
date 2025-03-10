@@ -1,21 +1,30 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
+  computed, DestroyRef,
   effect,
   inject,
-  signal,
+  signal
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { MatStep, MatStepper } from '@angular/material/stepper';
 import { RegistrationManagementService } from '../../services';
 import { RouteEnum, UserRegistrationStepEnum } from '@core/models/enums';
-import { filter } from 'rxjs';
+import { filter, startWith } from 'rxjs';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-registration',
-  imports: [CommonModule, RouterOutlet, MatStep, MatStepper],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule
+  ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,6 +32,7 @@ import { filter } from 'rxjs';
 export class RegistrationComponent {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
+  private destroyRef = inject(DestroyRef)
   regService = inject(RegistrationManagementService);
 
   steps = Object.values(UserRegistrationStepEnum);
@@ -42,15 +52,15 @@ export class RegistrationComponent {
   private trackRouteChanges(): void {
     effect(() => {
       this.router.events.pipe(
-        filter((event) => event instanceof NavigationEnd)
+        takeUntilDestroyed(this.destroyRef),
+        filter((event) => event instanceof NavigationEnd),
+        startWith(null)
       ).subscribe(() => {
         this.updateCurrentRoute();
       });
-
-
-      this.updateCurrentRoute();
     });
   }
+
 
   private updateCurrentRoute(): void {
     const currentPath = this.activatedRoute.firstChild?.snapshot.routeConfig?.path || null;
