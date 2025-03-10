@@ -1,0 +1,20 @@
+<mat-card class="card-container" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>User info</mat-card-title>
+  </mat-card-header>
+  <mat-list>
+    <mat-list-item>Email - {{authService.userData()?.email}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Experience In Year - {{authService.userData()?.experienceInYear}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Industry - {{authService.userData()?.industry}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Role - {{authService.userData()?.yourRole}}</mat-list-item>
+  </mat-list>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <p>
+      {{authService.userData()?.aboutUs}}
+    </p>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,9 @@
+<mat-horizontal-stepper [linear]="true" [selectedIndex]="stepIndex()" (selectionChange)="onStepChange($event)">
+  <mat-step [label]="UserRegistrationStepEnum.STEP_1" [completed]="regService.isStep1Complete()"></mat-step>
+  <mat-step [label]="UserRegistrationStepEnum.STEP_2" [completed]="regService.isStep2Complete()"></mat-step>
+  <mat-step [label]="UserRegistrationStepEnum.STEP_3"></mat-step>
+</mat-horizontal-stepper>
+
+<div class="container">
+ <router-outlet></router-outlet>
+</div>

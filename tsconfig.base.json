@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@angular-monorepo/core": ["libs/core/src/index.ts"],
-      "@angular-monorepo/shared": ["libs/shared/src/index.ts"]
+      "@angular-monorepo/shared": ["libs/shared/src/index.ts"],
+      "@core/*": ["libs/core/src/lib/*"],
+      "@shared/*": ["libs/shared/src/lib/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

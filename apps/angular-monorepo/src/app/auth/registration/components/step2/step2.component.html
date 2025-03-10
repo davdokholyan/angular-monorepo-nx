@@ -1,0 +1,68 @@
+<mat-card  class="card-container">
+  <mat-card-header>
+    <mat-card-title>Step 2: Account setup</mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+  <mat-card-content>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Industry</mat-label>
+      <mat-select formControlName="industry" placeholder="Select your industry">
+        @for (industry of IndustryEnum | enumValue; track industry) {
+          <mat-option [value]="industry">
+            {{ industry }}
+          </mat-option>
+        }
+      </mat-select>
+      @if (form.get('industry')?.hasError('required')) {
+      <mat-error>
+        Industry is required.
+      </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Years of Experience</mat-label>
+      <input matInput type="number" formControlName="experienceInYear" placeholder="Enter years (0-50)">
+      @if (form.get('experienceInYear')?.hasError('required')) {
+      <mat-error>
+        Experience is required.
+      </mat-error>
+      }
+      @if (form.get('experienceInYear')?.hasError('numberRange')) {
+        <mat-error>
+          Experience must be between 0 and 50.
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Your Role</mat-label>
+      <mat-select formControlName="yourRole" placeholder="Select your role">
+        @for (role of RoleEnum | enumValue; track role) {
+        <mat-option [value]="role">
+          {{ role }}
+        </mat-option>
+        }
+      </mat-select>
+
+      @if (form.get('yourRole')?.hasError('required')) {
+      <mat-error>
+        Role is required.
+      </mat-error>
+      }
+    </mat-form-field>
+  </mat-card-content>
+
+  <mat-card-actions class="flex-items-end">
+    <button mat-stroked-button color="primary" (click)="onBack()">
+      Back
+    </button>
+    <button mat-raised-button color="primary"  [disabled]="form.invalid">
+      Next
+    </button>
+  </mat-card-actions>
+  </form>
+
+</mat-card>
+
