@@ -6,7 +6,7 @@ import { RegistrationManagementService } from '../../../services';
 export const step3Guard: CanActivateFn = () => {
   const regService = inject(RegistrationManagementService);
   const router = inject(Router);
-  return regService.isStep1Complete()
+  return regService.isStep2Complete()
     ? true
     : router.createUrlTree([`/${RouteEnum.AUTH}/${RouteEnum.REGISTRATION}/${UserRegistrationStepEnum.STEP_2}`]);
 };
