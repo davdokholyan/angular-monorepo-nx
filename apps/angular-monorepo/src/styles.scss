@@ -25,3 +25,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   align-items: center;
   gap: 10px;
 }
+
+.word-break {
+  word-break: break-all;
+}
