@@ -49,6 +49,11 @@ export class RegistrationComponent {
     this.trackRouteChanges();
   }
 
+  onStepChange(event: { selectedIndex: number }): void {
+    const targetStep = this.steps[event.selectedIndex];
+    void this.router.navigate([`/${RouteEnum.AUTH}/${RouteEnum.REGISTRATION}/${targetStep}`]);
+  }
+
   private trackRouteChanges(): void {
     effect(() => {
       this.router.events.pipe(
@@ -65,10 +70,5 @@ export class RegistrationComponent {
   private updateCurrentRoute(): void {
     const currentPath = this.activatedRoute.firstChild?.snapshot.routeConfig?.path || null;
     this.currentRoute.set(currentPath);
-  }
-
-  onStepChange(event: { selectedIndex: number }): void {
-    const targetStep = this.steps[event.selectedIndex];
-    void this.router.navigate([`/${RouteEnum.AUTH}/${RouteEnum.REGISTRATION}/${targetStep}`]);
   }
 }

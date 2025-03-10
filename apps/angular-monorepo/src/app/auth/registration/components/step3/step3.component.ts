@@ -5,7 +5,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { RouteEnum, UserRegistrationStepEnum } from '@core/models/enums';
 import { RegistrationManagementService } from '../../../../services';
 
 @Component({
@@ -43,10 +42,6 @@ export class Step3Component {
     if (savedData) {
       this.aboutUsControl.setValue(savedData.aboutUs);
     }
-  }
-
-  onBack(): void {
-    this.regService.changeRoute([`/${RouteEnum.AUTH}/${RouteEnum.REGISTRATION}/${UserRegistrationStepEnum.STEP_2}`]);
   }
 
   onSubmit(): void {

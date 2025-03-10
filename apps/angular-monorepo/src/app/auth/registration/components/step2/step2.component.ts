@@ -58,10 +58,6 @@ export class Step2Component {
     this.initializeForm();
   }
 
-  onBack(): void {
-    this.regService.changeRoute([`${RouteEnum.AUTH}/${RouteEnum.REGISTRATION}/${UserRegistrationStepEnum.STEP_1}`]);
-  }
-
   onSubmit(): void {
     if (this.form.invalid) return;
 
