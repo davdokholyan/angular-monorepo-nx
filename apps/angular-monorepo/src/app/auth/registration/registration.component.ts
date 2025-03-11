@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed, DestroyRef,
-  effect,
   inject,
   signal
 } from '@angular/core';
@@ -55,14 +54,12 @@ export class RegistrationComponent {
   }
 
   private trackRouteChanges(): void {
-    effect(() => {
-      this.router.events.pipe(
-        takeUntilDestroyed(this.destroyRef),
-        filter((event) => event instanceof NavigationEnd),
-        startWith(null)
-      ).subscribe(() => {
-        this.updateCurrentRoute();
-      });
+    this.router.events.pipe(
+      takeUntilDestroyed(this.destroyRef),
+      filter((event) => event instanceof NavigationEnd),
+      startWith(null)
+    ).subscribe(() => {
+      this.updateCurrentRoute();
     });
   }
 
