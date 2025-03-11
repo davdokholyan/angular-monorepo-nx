@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed, DestroyRef,
-  inject,
+  inject, OnInit,
   signal
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -22,16 +22,16 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     RouterOutlet,
     MatStepperModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
-  private destroyRef = inject(DestroyRef)
+  private destroyRef = inject(DestroyRef);
   regService = inject(RegistrationManagementService);
 
   steps = Object.values(UserRegistrationStepEnum);
@@ -44,7 +44,7 @@ export class RegistrationComponent {
     return route ? this.steps.indexOf(route as UserRegistrationStepEnum) : 0;
   });
 
-  constructor() {
+  ngOnInit() {
     this.trackRouteChanges();
   }
 
@@ -54,13 +54,15 @@ export class RegistrationComponent {
   }
 
   private trackRouteChanges(): void {
-    this.router.events.pipe(
-      takeUntilDestroyed(this.destroyRef),
-      filter((event) => event instanceof NavigationEnd),
-      startWith(null)
-    ).subscribe(() => {
-      this.updateCurrentRoute();
-    });
+    this.router.events
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        filter((event) => event instanceof NavigationEnd),
+        startWith(null),
+      )
+      .subscribe(() => {
+        this.updateCurrentRoute();
+      });
   }
 
 
